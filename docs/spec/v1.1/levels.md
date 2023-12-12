@@ -231,6 +231,73 @@ All of [Build L2], plus:
 </dl>
 </section>
 
+<section id="build-l4">
+
+### Build L4
+
+<dl class="as-table">
+<dt>Summary<dd>
+
+TBD. Some form of complete/deterministic builds.
+
+</dl>
+</section>
+<section id="build-l5">
+
+### Build L5: Verifiable builds
+
+<dl class="as-table">
+<dt>Summary<dd>
+
+Compromising a build requires exploiting a vulnerability in the build
+platform's supply chain or physical access to the underlying hardware
+platform.
+
+In practice, this means that builds are configured to be reproducible and
+run on a build platform backed by a trusted hardware platform that offers
+integrity checking and remote attestation capabilities.
+
+<dt>Intended for<dd>
+
+Security-critical and/or proprietary software releases.
+Build L5 usually requires significant changes to existing build platforms.
+
+<dt>Software Producer Requirements<dd>
+
+All of [Build L4], plus:
+
+-   Configure builds to be [reproducible].
+
+-   Run builds on a hosted build platform that meets Build L5 requirements.
+
+-   Enable consumers to verify:
+
+    -   the platform's pre-build attestations.
+
+    -   build reprodicibility post-build. This can be accomplished by making the build process available to consumers, or through a trusted rebuilder platform.
+
+<dt>Build Platform Requirements<dd>
+
+All of [Build L4], plus:
+
+-   Collect and distribute Build L3+ provenance for hosted build
+    environment images (i.e., runner VM or container images).
+
+-   Collect and distribute hosted build environment pre-build integrity
+    attestation (i.e., secure boot and environment init)
+
+<dt>Benefits<dd>
+
+All of [Build L4], plus:
+
+-   Greatly reduces trust in the hosted build platform.
+
+-   Provides *cryptographic evidence* that an artifact was built from the
+    expected source, build process and build platform.
+
+</dl>
+</section>
+
 <!-- Link definitions -->
 
 [build l0]: #build-l0
