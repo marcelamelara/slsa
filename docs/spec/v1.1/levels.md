@@ -231,69 +231,72 @@ All of [Build L2], plus:
 </dl>
 </section>
 
-<section id="build-l4">
+## Attested Build Environment Track
 
-### Build L4
+| Track/Level | Requirements | Focus |
+| ----------- | ------------ | ----- |
+| [Env L0]  | (none)       | (n/a)    |
+| [Env L1]  | Signed provenance showing how the build image was built | Tampering during image generation |
+| [Env L2]  | Hardware-attested binding of launched build environment to build image | Tampering during image distribution |
+| [Env L3]  | Hardware-attested binding of build request to running build environment | Tampering during build environment assignment |
+| [Env L4]  | Hardware-attested protection of executing build environment | Tampering during build execution by platform |
+
+<section id="env-l0">
+
+### Env L0: No guarantees
 
 <dl class="as-table">
 <dt>Summary<dd>
 
-TBD. Some form of complete/deterministic builds.
-
-</dl>
-</section>
-<section id="build-l5">
-
-### Build L5: Verifiable builds
-
-<dl class="as-table">
-<dt>Summary<dd>
-
-Compromising a build requires exploiting a vulnerability in the build
-platform's supply chain or physical access to the underlying hardware
-platform.
-
-In practice, this means that builds are configured to be reproducible and
-run on a build platform backed by a trusted hardware platform that offers
-integrity checking and remote attestation capabilities.
+No requirements---L0 represents the lack of any sort of build environment attestation.
 
 <dt>Intended for<dd>
 
-Security-critical and/or proprietary software releases.
-Build L5 usually requires significant changes to existing build platforms.
+Development or test builds of software that are built and run on the same
+machine, such as unit tests.
 
-<dt>Software Producer Requirements<dd>
+<dt>Requirements<dd>
 
-All of [Build L4], plus:
-
--   Configure builds to be [reproducible].
-
--   Run builds on a hosted build platform that meets Build L5 requirements.
-
--   Enable consumers to verify:
-
-    -   the platform's pre-build attestations.
-
-    -   build reprodicibility post-build. This can be accomplished by making the build process available to consumers, or through a trusted rebuilder platform.
-
-<dt>Build Platform Requirements<dd>
-
-All of [Build L4], plus:
-
--   Collect and distribute Build L3+ provenance for hosted build
-    environment images (i.e., runner VM or container images).
-
--   Collect and distribute hosted build environment pre-build integrity
-    attestation (i.e., secure boot and environment init)
+n/a
 
 <dt>Benefits<dd>
 
-All of [Build L4], plus:
+n/a
 
--   Greatly reduces trust in the hosted build platform.
+</dl>
+</section>
+<section id="env-l1">
 
--   Provides *cryptographic evidence* that an artifact was built from the
-    expected source, build process and build platform.
+### Env L1: Signed build image provenance exists
+
+<dl class="as-table">
+<dt>Summary<dd>
+
+The build image (i.e., VM or container image) used to instantiate the build environment
+has Build L3 SLSA provenance showing how the image was built.
+
+<dt>Intended for<dd>
+
+Build platforms and organizations wanting to ensure a baseline level of integrity for build
+environments at the time of build image generation.
+
+<dt>Software Producer Requirements<dd>
+
+-   MUST run builds using a build image that was built by a hosted build platform that
+    meets Env L1 requirements.
+
+-   SHOULD verify the build image's Build L3 provenance for the selected build image,
+    and distribute evidence of the verification to consumers (e.g., using a [VSA])
+
+<dt>Build Platform Requirements<dd>
+
+-   Automatically generate and distribute Build L3 provenance for hosted build
+    environment images (i.e., VM or container images).
+
+<dt>Benefits<dd>
+
+-   Provides evidence that a build image provided by a hosted build platform was
+    built from the advertised source and build process.
 
 </dl>
 </section>
@@ -309,3 +312,4 @@ All of [Build L4], plus:
 [previous version]: ../v0.1/levels.md
 [provenance]: terminology.md
 [verification]: verifying-artifacts.md
+[VSA]: https://slsa.dev/spec/v1.0/verification_summary
