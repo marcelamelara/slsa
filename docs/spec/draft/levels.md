@@ -23,7 +23,7 @@ tracks without invalidating previous levels.
 | Tracks  | Focus
 | --------| ------------
 | [Build] | Build process provenance 
-| [Hardware Attested Build Environments] | Build platform provenance
+| [Hardware Attested Build Environment] | Build platform provenance
 
 > Note: The [previous version] of the specification used a single unnamed track,
 > SLSA 1–4. For version 1.0 the Source aspects were removed to focus on the
@@ -241,10 +241,10 @@ All of [Build L2], plus:
 | Track/Level | Requirements | Focus |
 | ----------- | ------------ | ----- |
 | [HABE L0]  | (none)       | (n/a)    |
-| [HABE L1]  | Signed provenance showing how the build image was built | Tampering during build image generation |
-| [HABE L2]  | Hardware-attested binding of a build image to a running build environment | Tampering during build environment deployment |
-| [HABE L3]  | Hardware-attested binding of a build to deployed build environment | Tampering during build dispatch |
-| [HABE L4]  | Hardware-attested build execution | Tampering by build platform at build execution |
+| [HABE L1]  | Signed build image provenance exists | Tampering during build image generation |
+| [HABE L2]  | Attested build environment deployment | Tampering during build environment deployment |
+| [HABE L3]  | Attested build dispatch | Tampering during build dispatch |
+| [HABE L4]  | Attested build execution | Tampering by build platform at build execution |
 
 <section id="habe-l0">
 
@@ -309,21 +309,20 @@ environments at the time of build image generation.
 </section>
 <section id="habe-l2">
 
-### HABE L2: Hardware-attested binding of a build image to a running build environment
+### HABE L2: Attested build environment deployment
 
 TODO
 
 </section>
 <section id="habe-l3">
 
-### HABE L3: Hardware-attested binding of a build to deployed build environment
-
+### HABE L3: Attested build dispatch
 TODO
 
 </section>
 <section id="habe-l4">
 
-### HABE L4: Hardware-attested build execution
+### HABE L4: Attested build execution
 
 TODO
 
@@ -342,7 +341,7 @@ TODO
 [habe l3]: #habe-l3
 [habe l4]: #habe-l4
 [future versions]: future-directions.md
-[Hardware Attested Build Environments]: #hardware-attested-build-environments-track
+[Hardware Attested Build Environments]: #hardware-attested-build-environment-track
 [hosted]: requirements.md#isolation-strength
 [previous version]: ../v0.1/levels.md
 [provenance]: terminology.md
