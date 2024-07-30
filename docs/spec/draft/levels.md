@@ -341,7 +341,7 @@ TODO
 [habe l3]: #habe-l3
 [habe l4]: #habe-l4
 [future versions]: future-directions.md
-[Hardware Attested Build Environments]: #hardware-attested-build-environment-track
+[Hardware Attested Build Environment]: #hardware-attested-build-environment-track
 [hosted]: requirements.md#isolation-strength
 [previous version]: ../v0.1/levels.md
 [provenance]: terminology.md
