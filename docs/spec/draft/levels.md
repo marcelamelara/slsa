@@ -12,13 +12,24 @@ their intent. For the prescriptive requirements for each level, see
 [Requirements](requirements.md). For a general overview of SLSA, see
 [About SLSA](principles.md).
 
-## Levels and tracks
+## Tracks and levels
 
 SLSA levels are split into *tracks*. Each track has its own set of levels that
 measure a particular aspect of supply chain security. The purpose of tracks is
 to recognize progress made in one aspect of security without blocking on an
 unrelated aspect. Tracks also allow the SLSA spec to evolve: we can add more
 tracks without invalidating previous levels.
+
+| Tracks  | Focus
+| --------| ------------
+| [Build] | Build process provenance 
+| [Hardware Attested Build Environments] | Build platform provenance
+
+> Note: The [previous version] of the specification used a single unnamed track,
+> SLSA 1–4. For version 1.0 the Source aspects were removed to focus on the
+> Build track. A Source track may be added in [future versions].
+
+## Build track
 
 | Track/Level | Requirements | Focus
 | ----------- | ------------ | -----
@@ -29,12 +40,6 @@ tracks without invalidating previous levels.
 
 <!-- For comparison: a future Build L4's focus might be reproducibility or
 hermeticity or completness of provenance -->
-
-> Note: The [previous version] of the specification used a single unnamed track,
-> SLSA 1–4. For version 1.0 the Source aspects were removed to focus on the
-> Build track. A Source track may be added in [future versions].
-
-## Build track
 
 The SLSA build track describes increasing levels of trustworthiness and
 completeness in a package artifact's <dfn>provenance</dfn>. Provenance describes
@@ -231,19 +236,19 @@ All of [Build L2], plus:
 </dl>
 </section>
 
-## Attested Build Environment Track
+## Hardware Attested Build Environment Track
 
 | Track/Level | Requirements | Focus |
 | ----------- | ------------ | ----- |
-| [Env L0]  | (none)       | (n/a)    |
-| [Env L1]  | Signed provenance showing how the build image was built | Tampering during image generation |
-| [Env L2]  | Hardware-attested binding of launched build environment to build image | Tampering during image distribution |
-| [Env L3]  | Hardware-attested binding of build request to running build environment | Tampering during build environment assignment |
-| [Env L4]  | Hardware-attested protection of executing build environment | Tampering during build execution by platform |
+| [HABE L0]  | (none)       | (n/a)    |
+| [HABE L1]  | Signed provenance showing how the build image was built | Tampering during build image generation |
+| [HABE L2]  | Hardware-attested binding of a build image to a running build environment | Tampering during build environment deployment |
+| [HABE L3]  | Hardware-attested binding of a build to deployed build environment | Tampering during build dispatch |
+| [HABE L4]  | Hardware-attested build execution | Tampering by build platform at build execution |
 
-<section id="env-l0">
+<section id="habe-l0">
 
-### Env L0: No guarantees
+### HABE L0: No guarantees
 
 <dl class="as-table">
 <dt>Summary<dd>
@@ -265,9 +270,10 @@ n/a
 
 </dl>
 </section>
-<section id="env-l1">
 
-### Env L1: Signed build image provenance exists
+<section id="habe-l1">
+
+### HABE L1: Signed build image provenance exists
 
 <dl class="as-table">
 <dt>Summary<dd>
@@ -299,15 +305,44 @@ environments at the time of build image generation.
     built from the advertised source and build process.
 
 </dl>
+
+</section>
+<section id="habe-l2">
+
+### HABE L2: Hardware-attested binding of a build image to a running build environment
+
+TODO
+
+</section>
+<section id="habe-l3">
+
+### HABE L3: Hardware-attested binding of a build to deployed build environment
+
+TODO
+
+</section>
+<section id="habe-l4">
+
+### HABE L4: Hardware-attested build execution
+
+TODO
+
 </section>
 
 <!-- Link definitions -->
 
+[Build]: #build-track
 [build l0]: #build-l0
 [build l1]: #build-l1
 [build l2]: #build-l2
 [build l3]: #build-l3
+[habe l0]: #habe-l0
+[habe l1]: #habe-l1
+[habe l2]: #habe-l2
+[habe l3]: #habe-l3
+[habe l4]: #habe-l4
 [future versions]: future-directions.md
+[Hardware Attested Build Environments]: #hardware-attested-build-environments-track
 [hosted]: requirements.md#isolation-strength
 [previous version]: ../v0.1/levels.md
 [provenance]: terminology.md
