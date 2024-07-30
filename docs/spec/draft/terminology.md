@@ -26,8 +26,6 @@ of terminology and models to describe what we're protecting.
 
 ## Software supply chain
 
-**TODO:** Update the text to match the new diagram.
-
 SLSA's framework addresses every step of the software supply chain - the
 sequence of steps resulting in the creation of an artifact. We represent a
 supply chain as a [directed acyclic graph] of sources, builds, dependencies, and
@@ -126,6 +124,42 @@ of build types](/provenance/v1#index-of-build-types).
     a more concise field name.
 
 </details>
+
+### Build environment model
+
+Following the [build model](#build-model), the [SLSA Hardware Attested Build
+Environments (HABE) Track] models a *build environment*
+as a single instance of an execution context that runs a tenant's build
+on a hosted build platform. Specifically, a build environment comprises
+resources from the *compute platform* and a *build image*.
+
+A typical build environment will go through the following lifecycle:
+
+1.  *Build image creation*: A hosted build platform creates different build
+    images through a separate build process. For the SLSA HABE Track, the
+    hosted build platform outputs SLSA provenance describing this process.
+2.  *Build environment deployment*: The hosted build platform deploys a
+    build image on a compute platform to provision a new build environment.
+    For the SLSA HABE Track, the build platform attests to the *measurement*
+    of the environment's *boot process*.
+3.  *Build dispatch*: When the tenant dispatches a new build, the hosted
+    build platform assigns the build to a deployed build environment. For
+    the SLSA HABE Track, the build platform attests to the binding between
+    a build environment and *build ID*.
+4.  *Build execution*: Finally, the *build executor* running within the
+    environment executes the tenant's build definition.
+
+| Primary Term | Description
+| --- | ---
+| Build ID | An immutable identifier assigned uniquely to a specific execution of a tenant's build. In practice, the build ID may be a cryptographic key or other unique and immutable identfier (e.g., a UUID) associated with the build execution.
+| Build image | The run-time context within a build environment, such as the VM or container image. Individual components of a build image are provided by the hosted build platform, and include the build executor, and platform-provided pre-installed guest OS and packages.
+| Build executor | The platform-provided program dedicated to executing the tenant’s build definition, i.e., running the build, within the build image. The build executor must be included in the build image's measurement.
+| Build dispatch | The process of assigning a tenant's build to a pre-deployed build environment on a hosted build platform.
+| Compute platform | The compute system and infrastructure, i.e., the host system (hypervisor and/or OS) and hardware, underlying a build platform. In practice, the compute platform and the build platform may be managed by the same or distinct organizations.
+| Boot process | In the context of builds, the process of loading and executing the layers of firmware and software needed to start up a build environmenton the build platform.
+| Measurement | The cryptographic hash of some system state in the build environment, including software binaries, configuration, or initialized run-time data. Software layers that are commonly measured include the bootloader, kernel, and kernel cmdline.
+
+TODO: Disambiguate similar terms (e.g., build job, build runner)
 
 ### Package model
 
