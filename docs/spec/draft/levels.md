@@ -242,9 +242,9 @@ All of [Build L2], plus:
 | ----------- | ------------ | ----- |
 | [HABE L0]  | (none)       | (n/a)    |
 | [HABE L1]  | Signed build image provenance exists | Tampering during build image generation |
-| [HABE L2]  | Attested build environment deployment | Tampering during build environment deployment |
-| [HABE L3]  | Attested build dispatch | Tampering during build dispatch |
-| [HABE L4]  | Attested build execution | Tampering by build platform at build execution |
+| [HABE L2]  | Signed build environment boot attestation exists | Tampering during build environment deployment |
+| [HABE L3]  | Signed build dispatch attestation exists | Tampering during build dispatch |
+| [HABE L4]  | Signed build execution start state attestation exists | Tampering by build platform at build execution |
 
 <section id="habe-l0">
 
@@ -309,20 +309,20 @@ environments at the time of build image generation.
 </section>
 <section id="habe-l2">
 
-### HABE L2: Attested build environment deployment
+### HABE L2: Signed build environment boot attestation exists
 
 TODO
 
 </section>
 <section id="habe-l3">
 
-### HABE L3: Attested build dispatch
+### HABE L3: Signed build dispatch attestation exists
 TODO
 
 </section>
 <section id="habe-l4">
 
-### HABE L4: Attested build execution
+### HABE L4: Signed build execution start state attestation exists
 
 TODO
 
