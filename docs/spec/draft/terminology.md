@@ -152,14 +152,14 @@ A typical build environment will go through the following lifecycle:
 | Primary Term | Description
 | --- | ---
 | Build ID | An immutable identifier assigned uniquely to a specific execution of a tenant's build. In practice, the build ID may be a cryptographic key or other unique and immutable identfier (e.g., a UUID) associated with the build execution.
-| Build image | The run-time context within a build environment, such as the VM or container image. Individual components of a build image are provided by the hosted build platform, and include the build executor, and platform-provided pre-installed guest OS and packages.
+| Build image | The template for a build runtime environment, such as a VM or container image. Individual components of a build image are provided by the hosted build platform, and include the build executor, and platform-provided pre-installed guest OS and packages.
 | Build executor | The platform-provided program dedicated to executing the tenant’s build definition, i.e., running the build, within the build image. The build executor must be included in the build image's measurement.
 | Build dispatch | The process of assigning a tenant's build to a pre-deployed build environment on a hosted build platform.
 | Compute platform | The compute system and infrastructure, i.e., the host system (hypervisor and/or OS) and hardware, underlying a build platform. In practice, the compute platform and the build platform may be managed by the same or distinct organizations.
 | Boot process | In the context of builds, the process of loading and executing the layers of firmware and software needed to start up a build environmenton the build platform.
 | Measurement | The cryptographic hash of some system state in the build environment, including software binaries, configuration, or initialized run-time data. Software layers that are commonly measured include the bootloader, kernel, and kernel cmdline.
 
-TODO: Disambiguate similar terms (e.g., build job, build runner)
+TODO: Disambiguate similar terms (e.g., image, build job, build runner)
 
 ### Package model
 
